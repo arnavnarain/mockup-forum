@@ -1,6 +1,7 @@
 import React, { useState}  from "react";
 import { useStytch } from '@stytch/react';
-import { env } from "process";
+import { MainContainer, Button } from '../components/MainContainer';
+
 
 export const Login = () => { 
     const [email, setEmail] = useState("");
@@ -10,7 +11,8 @@ export const Login = () => {
 
     const resetPassword = () => { 
         stytchClient.passwords.resetByEmailStart({
-            email: env.APP_DEFAULT_EMAIL,
+
+            email:  process.env.REACT_APP_TOKEN
         });
     }
 
@@ -22,22 +24,32 @@ export const Login = () => {
         });
     };
     return (
-    <>
-        <input placeholder="Email" 
-            onChange={(e) => {
-                setEmail(e.target.value)}}
-        />
-            <input placeholder="Password" 
-            onChange={(e) => {
-                setPassword(e.target.value)}}
-        />
-        
-        <button onClick={login}> Login</button>
-
-        <div>
-            <p> Forgot your password? </p>
-            <button onClick={resetPassword}> Reset Password</button>
+        <div
+        style={{
+            position: 'absolute', left: '50%', top: '30%',
+            transform: 'translate(-50%, -50%)'
+        }}
+        >
+            <br/>
+            <MainContainer> 
+            <h1 style={{color: "black"}}>Login</h1>
+                <input placeholder="Email" 
+                    onChange={(e) => {
+                        setEmail(e.target.value)}}
+                />
+                <br></br>
+                <input placeholder="Password" 
+                    onChange={(e) => {
+                        setPassword(e.target.value)}}
+                />
+                
+                <br />
+                <Button onClick={login}> Login</Button>
+                <div>
+                    <p style={{color: "black"}}> Forgot your password? </p>
+                    <Button onClick={resetPassword}> Reset Password</Button>
+                </div>
+            </MainContainer>
         </div>
-    </>
     )
 }
