@@ -11,7 +11,6 @@ export const Login = () => {
 
     const resetPassword = () => { 
         stytchClient.passwords.resetByEmailStart({
-
             email:  process.env.REACT_APP_TOKEN
         });
     }
